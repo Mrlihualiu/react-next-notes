@@ -1,5 +1,5 @@
 import SidebarNoteItemHeader from './SidebarNoteItemHeader';
-import SidebarNoteItemContent from '@/components/SidebarNoteItemContent';
+import SidebarNoteItemContent from '@/components/Sidebar/SidebarNoteItemContent';
 
 export default function SidebarNoteItem ({ noteId, note }) {
   const { title, content = '', updateTime } = note;

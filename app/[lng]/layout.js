@@ -1,0 +1,31 @@
+import "./globals.css";
+import Sidebar from "@/components/Sidebar/Sidebar";
+import { locales } from "@/config";
+
+export const metadata = {
+  title: "Next Notes",
+  description: "编辑你的梦想笔记",
+};
+
+export async function generateStaticParams () {
+  return locales.map((lng) => ({ lng }))
+}
+
+export default async function RootLayout ({
+  children,
+  params
+}) {
+  const { lng } = await params;
+  return (
+    <html lang={lng}>
+      <body>
+        <div className="container">
+          <div className="main">
+            <Sidebar lang={lng} />
+            <section className="col note-viewer">{children}</section>
+          </div>
+        </div>
+      </body>
+    </html>
+  );
+}

@@ -1,6 +1,7 @@
 import { useFormStatus } from 'react-dom'
 import Image from 'next/image'
 
+
 export default function DeleteButton ({ formAction, isDraft }) {
   const { pending } = useFormStatus()
 
@@ -18,7 +19,7 @@ export default function DeleteButton ({ formAction, isDraft }) {
         alt=""
         role="presentation"
       />
-      Delete
+      delete
     </button>
   )
 }

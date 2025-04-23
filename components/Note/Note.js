@@ -1,10 +1,12 @@
 import dayjs from 'dayjs';
-import NotePreview from '@/components/NotePreview';
-import EditButton from '@/components/EditButton';
+import NotePreview from '@/components/Note/NotePreview';
+import EditButton from '@/components/Common/EditButton';
+import { getTranslation } from "@/app/i18n/index.js"
 
-export default function Note ({ noteId, note }) {
+export default async function Note ({ noteId, note, lng }) {
   const { title, content, createdAt } = note;
   const date = dayjs(createdAt).format('YYYY-MM-DD HH:mm:ss');
+  const { t } = await getTranslation(lng)
 
   return (
     <div className='note'>
@@ -14,7 +16,7 @@ export default function Note ({ noteId, note }) {
           <small className='note-update-at' role="status">
             Last Updated on {date}
           </small>
-          <EditButton noteId={noteId} role="menuitem">Edit</EditButton>
+          <EditButton noteId={noteId} role="menuitem">{t('edit')}</EditButton>
         </div>
       </div>
       <NotePreview>{content}</NotePreview>

@@ -2,9 +2,9 @@
 
 import { useState, useActionState, useEffect } from 'react'
 import NotePreview from './NotePreview'
-import { saveNote, deleteNote } from '../app/actions'
-import SaveButton from '@/components/SaveButton'
-import DeleteButton from '@/components/DeleteButton'
+import { saveNote, deleteNote } from '../../app/[lng]/actions.js'
+import SaveButton from '@/components/Common/SaveButton'
+import DeleteButton from '@/components/Common/DeleteButton'
 
 const initialState = {
   message: null,
