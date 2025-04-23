@@ -1,6 +1,6 @@
 'use client';
 
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useTransition } from 'react';
 
 function Spinner ({ active = true }) {
@@ -17,6 +17,9 @@ export default function SidebarSearchField () {
   const { replace } = useRouter();
   const pathname = usePathname();
   const [isPending, startTransition] = useTransition();
+  // 刷新路由初始化搜索参数
+  const searchParams = useSearchParams();
+  const searchText = searchParams.get('q') || '';
 
   function handleSearch (term) {
     const params = new URLSearchParams(window.location.search);
@@ -39,6 +42,7 @@ export default function SidebarSearchField () {
         id="sidebar-search-input"
         placeholder="Search"
         type="text"
+        value={searchText}
         onChange={(e) => handleSearch(e.target.value)}
       />
       <Spinner active={isPending} />
