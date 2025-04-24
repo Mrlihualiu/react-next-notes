@@ -2,7 +2,6 @@ import React, { Suspense } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-import { getTranslation } from "@/app/i18n/index.js"
 import SidebarSearchField from '@/components/Sidebar/SidebarSearchField';
 import SidebarNoteList from "@/components/Sidebar/SidebarNoteList";
 import EditButton from '@/components/Common/EditButton';
@@ -10,8 +9,7 @@ import NoteListSkeleton from "@/components/Note/NoteListSkeleton";
 
 import "@/public/style.css";
 
-export default async function Sidebar ({ lng }) {
-  const { t } = await getTranslation(lng)
+export default function Sidebar ({ i18nText }) {
 
   return (
     <>
@@ -30,7 +28,7 @@ export default async function Sidebar ({ lng }) {
         </Link>
         <section className="sidebar-menu" role="menubar">
           <SidebarSearchField />
-          <EditButton noteId={null}>{t('new')}</EditButton>
+          <EditButton noteId={null}>{i18nText.new}</EditButton>
         </section>
         <nav>
           <Suspense fallback={<NoteListSkeleton />}>

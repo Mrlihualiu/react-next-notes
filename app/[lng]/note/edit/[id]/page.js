@@ -1,8 +1,9 @@
 import NoteEditor from '@/components/Note/NoteEditor'
 import { getNote } from '@/lib/redis'
+import { getTranslation } from "@/app/i18n/index.js";
 
 export default async function EditPage ({ params }) {
-  const { id } = await params;  // Destructure after awaiting
+  const { id, lng } = await params;  // Destructure after awaiting
   const noteId = id || '';
   const note = await getNote(noteId);
 
@@ -16,5 +17,14 @@ export default async function EditPage ({ params }) {
     )
   }
 
-  return <NoteEditor noteId={noteId} initialTitle={note.title} initialBody={note.content} />
+  const { t } = await getTranslation(lng)
+  const i18nText = {
+    save: t('save'),
+    saving: t('saving'),
+    preview: t('preview'),
+    done: t('done'),
+    delete: t('delete')
+  }
+
+  return <NoteEditor noteId={noteId} initialTitle={note.title} initialBody={note.content} i18nText={i18nText} />
 }

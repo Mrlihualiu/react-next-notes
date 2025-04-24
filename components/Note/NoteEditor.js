@@ -10,7 +10,7 @@ const initialState = {
   message: null,
 }
 
-export default function NoteEditor ({ noteId, initialTitle, initialBody }) {
+export default function NoteEditor ({ noteId, initialTitle, initialBody, i18nText }) {
   const [saveState, saveFormAction] = useActionState(saveNote, initialState)
   const [delState, delFormAction] = useActionState(deleteNote, initialState)
 
@@ -29,8 +29,8 @@ export default function NoteEditor ({ noteId, initialTitle, initialBody }) {
       <form className="note-editor-form" autoComplete="off">
         <div className='note-editor-menu'>
           <input type="hidden" name="noteId" value={noteId} />
-          <SaveButton formAction={saveFormAction} />
-          <DeleteButton formAction={delFormAction} isDraft={isDraft} />
+          <SaveButton formAction={saveFormAction} i18nText={i18nText} />
+          <DeleteButton formAction={delFormAction} isDraft={isDraft} i18nText={i18nText} />
         </div>
         <div className='note-editor-menu'>
           {saveState?.message}
@@ -57,7 +57,7 @@ export default function NoteEditor ({ noteId, initialTitle, initialBody }) {
       </form>
       <div className="note-editor-preview">
         <div className="label label--preview" role="status">
-          Preview
+          {i18nText.preview}
         </div>
         <h1 className="note-title">{title}</h1>
         <NotePreview>{body}</NotePreview>

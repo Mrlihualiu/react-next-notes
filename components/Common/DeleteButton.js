@@ -2,7 +2,7 @@ import { useFormStatus } from 'react-dom'
 import Image from 'next/image'
 
 
-export default function DeleteButton ({ formAction, isDraft }) {
+export default function DeleteButton ({ formAction, isDraft, i18nText }) {
   const { pending } = useFormStatus()
 
   return !isDraft && (
@@ -19,7 +19,7 @@ export default function DeleteButton ({ formAction, isDraft }) {
         alt=""
         role="presentation"
       />
-      delete
+      {i18nText.delete}
     </button>
   )
 }

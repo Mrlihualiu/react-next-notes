@@ -230,7 +230,7 @@ hr {
   cursor: pointer;
   font-weight: 700;
   outline-style: none;
-  width: 76px;
+  width: 80px;
 }
 .edit-button--solid {
   background: var(--primary-blue);

@@ -1,7 +1,7 @@
 import { useFormStatus } from 'react-dom'
 import Image from 'next/image'
 
-export default function SaveButton ({ formAction }) {
+export default function SaveButton ({ formAction, i18nText }) {
   const { pending } = useFormStatus()
 
   return (
@@ -19,7 +19,7 @@ export default function SaveButton ({ formAction }) {
         alt=""
         role="presentation"
       />
-      {pending ? 'Saving' : 'Done'}
+      {pending ? i18nText.saving : i18nText.done}
     </button>
   )
 }
