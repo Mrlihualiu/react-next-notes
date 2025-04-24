@@ -6,5 +6,6 @@
   "delete": "delete",
   "done": "done",
   "saving": "saving...",
-  "preview": "preview"
+  "preview": "preview",
+  "importMD": "import .md file"
 }

@@ -20,6 +20,7 @@ export default async function RootLayout ({
   const { t } = await getTranslation(lng)
   const i18nText = {
     new: t('new'),
+    importMD: t('importMD')
   }
 
   return (

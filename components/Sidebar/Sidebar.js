@@ -6,6 +6,7 @@ import SidebarSearchField from '@/components/Sidebar/SidebarSearchField';
 import SidebarNoteList from "@/components/Sidebar/SidebarNoteList";
 import EditButton from '@/components/Common/EditButton';
 import NoteListSkeleton from "@/components/Note/NoteListSkeleton";
+import SidebarImport from "./SidebarImport";
 
 import "@/public/style.css";
 
@@ -35,6 +36,7 @@ export default function Sidebar ({ i18nText }) {
             <SidebarNoteList />
           </Suspense>
         </nav>
+        <SidebarImport i18nText={i18nText} />
       </section>
     </>
   )

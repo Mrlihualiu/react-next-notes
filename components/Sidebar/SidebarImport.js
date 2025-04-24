@@ -1,0 +1,52 @@
+'use client'
+
+import React, { Suspense } from 'react'
+import { useRouter } from 'next/navigation'
+
+export default function SidebarImport ({ i18nText }) {
+  const router = useRouter()
+  const onChage = async (e) => {
+    const fileInput = e.target
+    if (!fileInput || fileInput.files.length === 0) {
+      console.warn('file is empty')
+      return
+    }
+    const file = fileInput.files[0]
+    const formData = new FormData()
+    formData.append('file', file)
+    try {
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData
+      })
+      if (!response.ok) {
+        console.error('something went wrong')
+        return
+      }
+      const data = await response.json()
+      router.push(`/notes/${data.id}`)
+    } catch (error) {
+      console.error('something went wrong')
+    }
+
+    // 重置 file input
+    e.target.type = "text";
+    e.target.type = "file";
+  }
+  return (
+    <form method="post" enctype="multipart/form-data">
+      <div style={{ textAlign: "center" }}>
+        <label for="file" style={{ cursor: 'pointer' }}>{i18nText.importMD}</label>
+        <input
+          type="file"
+          id="file"
+          name="file"
+          multiple
+          style={{ position: "absolute", clip: "rect(0 0 0 0)" }}
+          onChange={onChage}
+          accept='.md, .markdown'
+        />
+      </div>
+    </form>
+  )
+}

@@ -6,5 +6,6 @@
   "delete": "删除",
   "done": "完成",
   "saving": "保存中...",
-  "preview": "预览"
+  "preview": "预览",
+  "importMD": "导入 .md 文件"
 }
