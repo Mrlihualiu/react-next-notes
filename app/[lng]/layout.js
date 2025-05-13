@@ -1,5 +1,6 @@
 import "./globals.css";
 import Sidebar from "@/components/Sidebar/Sidebar";
+import Header from "@/components/Header";
 import { locales } from "@/config";
 import { getTranslation } from "@/app/i18n/index.js";
 
@@ -27,6 +28,7 @@ export default async function RootLayout ({
     <html lang={lng}>
       <body>
         <div className="container">
+          <Header />
           <div className="main">
             <Sidebar i18nText={i18nText} lng={lng} />
             <section className="col note-viewer">{children}</section>
