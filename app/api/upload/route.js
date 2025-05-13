@@ -50,7 +50,7 @@ export async function POST (request) {
     // 清除缓存
     revalidatePath('/', 'layout')
 
-    return NextResponse.json({ fileUrl: `${relativeUploadDir}/${uniqueFilename}`, uid: res });
+    return NextResponse.json({ fileUrl: `${relativeUploadDir}/${uniqueFilename}`, id: res });
   } catch (e) {
     console.error(e)
     return NextResponse.json(

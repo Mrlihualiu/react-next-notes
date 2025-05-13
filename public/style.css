@@ -461,6 +461,9 @@ ul.notes-list {
   overflow-wrap: break-word;
   margin-inline-start: 12px;
 }
+.note-title-input {
+  color: #000;
+}
 .note-updated-at {
   color: var(--secondary-text);
   white-space: nowrap;
@@ -498,6 +501,7 @@ ul.notes-list {
   font-size: 0.8rem;
   padding: 12px;
   outline-style: none;
+  color: #000;
 }
 .note-editor-form input:focus,
 .note-editor-form textarea:focus {

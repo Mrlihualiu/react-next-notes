@@ -10,7 +10,7 @@ import SidebarImport from "./SidebarImport";
 
 import "@/public/style.css";
 
-export default function Sidebar ({ i18nText }) {
+export default function Sidebar ({ i18nText, lng }) {
 
   return (
     <>
@@ -29,7 +29,7 @@ export default function Sidebar ({ i18nText }) {
         </Link>
         <section className="sidebar-menu" role="menubar">
           <SidebarSearchField />
-          <EditButton noteId={null}>{i18nText.new}</EditButton>
+          <EditButton noteId={null} lng={lng}>{i18nText.new}</EditButton>
         </section>
         <nav>
           <Suspense fallback={<NoteListSkeleton />}>

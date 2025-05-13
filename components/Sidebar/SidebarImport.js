@@ -1,10 +1,12 @@
 'use client'
 
-import React, { Suspense } from 'react'
+import React, { useTransition } from 'react'
 import { useRouter } from 'next/navigation'
 
 export default function SidebarImport ({ i18nText }) {
   const router = useRouter()
+  const [isPending, startTransition] = useTransition()
+
   const onChage = async (e) => {
     const fileInput = e.target
     if (!fileInput || fileInput.files.length === 0) {
@@ -24,7 +26,16 @@ export default function SidebarImport ({ i18nText }) {
         return
       }
       const data = await response.json()
-      router.push(`/notes/${data.id}`)
+      if (!data.id) {
+        console.error('something went wrong')
+        return
+      }
+      startTransition(() => {
+        router.push(`/note/${data.id}`)
+      })
+      startTransition(() => {
+        router.refresh()
+      })
     } catch (error) {
       console.error('something went wrong')
     }
@@ -34,9 +45,9 @@ export default function SidebarImport ({ i18nText }) {
     e.target.type = "file";
   }
   return (
-    <form method="post" enctype="multipart/form-data">
+    <form method="post" encType="multipart/form-data">
       <div style={{ textAlign: "center" }}>
-        <label for="file" style={{ cursor: 'pointer' }}>{i18nText.importMD}</label>
+        <label htmlFor="file" style={{ cursor: 'pointer' }}>{i18nText.importMD}</label>
         <input
           type="file"
           id="file"
