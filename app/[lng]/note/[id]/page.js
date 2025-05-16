@@ -1,5 +1,5 @@
 import Note from '@/components/Note/Note'
-import { getNote } from '@/lib/redis'
+import { getNote } from '@/lib/strapi'
 
 export default async function Page ({ params }) {
   // 动态路由获取id，并获取对应笔记数据

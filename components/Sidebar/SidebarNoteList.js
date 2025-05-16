@@ -1,4 +1,4 @@
-import { getAllNotes } from "@/lib/redis";
+import { getAllNotes } from "@/lib/strapi";
 import SidebarNoteListFilter from '@/components/Sidebar/SidebarNoteListFilter';
 // import SidebarNoteItem from '@/components/SidebarNoteItem';
 import SidebarNoteItemHeader from "./SidebarNoteItemHeader";

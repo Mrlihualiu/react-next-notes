@@ -32,7 +32,6 @@ function SignOut (props) {
 }
 
 export default async function Header () {
-  console.log('auth :>> ', auth);
   const session = await auth();
   return (
     <header style={{ display: "flex", "justifyContent": "space-around" }}>
