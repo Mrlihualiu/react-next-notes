@@ -1,7 +1,7 @@
 'use server'
 
 import { redirect } from 'next/navigation'
-import { addNote, updateNote, delNote } from '@/lib/strapi'
+import { addNote, updateNote, delNote } from '@/lib/notes'
 import { revalidatePath } from 'next/cache'
 import { z } from 'zod'
 import { sleep } from '@/lib/utils'
@@ -18,8 +18,7 @@ export async function saveNote (prevState, formData) {
 
   const data = {
     title,
-    content: body,
-    updateTime: new Date()
+    content: body
   }
   const validated = schema.safeParse(data)
   if (!validated.success) {
@@ -32,11 +31,15 @@ export async function saveNote (prevState, formData) {
   await sleep(2000)
 
   if (noteId) {
-    await updateNote(noteId, JSON.stringify(data))
-    revalidatePath('/', 'layout')
+    await updateNote(noteId, data)
+    redirect(`/note/${noteId}`)
+    // revalidatePath('/', 'layout')
   } else {
-    await addNote(JSON.stringify(data))
-    revalidatePath('/', 'layout')
+    const res = await addNote(data)
+    if (res?.uuid) {
+      redirect(`/note/${res.uuid}`)
+    }
+    // revalidatePath('/', 'layout')
   }
   return {
     message: noteId ? 'Update success' : 'Add success'

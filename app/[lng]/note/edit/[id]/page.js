@@ -1,5 +1,5 @@
 import NoteEditor from '@/components/Note/NoteEditor'
-import { getNote } from '@/lib/strapi'
+import { getNote } from '@/lib/notes'
 import { getTranslation } from "@/app/i18n/index.js";
 
 export default async function EditPage ({ params }) {
